@@ -18,15 +18,7 @@
         <div>
             <input class="form-control w-100 mt-1" name="item" required>
         </div>
-        <p class="mt-3">③ 素材・カラー</p>
-        <div>
-            <input class="form-control w-100 mt-1" name="material">
-        </div>
-        <p class="mt-3">④ サイズ*</p>
-        <div>
-            <input class="form-control w-100 mt-1" name="size" required>
-        </div>
-        <p class="mt-3">⑤ コンディション*</p>
+        <p class="mt-3">③ コンディション*</p>
         <div>
 	    <select class="form-control w-100 mt-1" name="condition" required>
 		<option value="" selected>選択してください</option>
@@ -37,13 +29,18 @@
 		<option value="使用感かなりあり">使用感かなりあり</option>
 	    </select>
         </div>
-        <p class="mt-3">⑥ 付属品</p>
+        <p class="mt-3">④ 鑑定書/鑑別書</p>
         <div>
-            <input class="form-control w-100 mt-1" name="accessories">
+	    <select class="form-control w-100 mt-1" name="appraisal">
+		<option value="" selected>選択してください</option>
+		<option value="鑑定書あり">鑑定書あり</option>
+		<option value="鑑別書あり">鑑別書あり</option>
+		<option value="なし">なし</option>
+	    </select>
         </div>
-        <p class="mt-3">⑦ 刻印・シリアル(エルメス・シャネルなど)</p>
+        <p class="mt-3">⑤ その他情報</p>
         <div>
-            <input class="form-control w-100 mt-1" name="serial">
+            <input class="form-control w-100 mt-1" name="others">
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="送信">
     </form>
@@ -88,18 +85,18 @@
             $('form').submit(function () {
                 const brand = $('input[name="brand"]').val();
                 const item = $('input[name="item"]').val();
-                const material  = $('input[name="material"]').val();
-                const size  = $('input[name="size"]').val();
                 const condition = document.satei.condition;
-		const num = condition.selectedIndex;
-		const str = condition.options[num].value;
-                const accessories = $('input[name="accessories"]').val();
-                const serial = $('input[name="serial"]').val();
+		const numC = condition.selectedIndex;
+		const strC = condition.options[numC].value;
+                const appraisal = document.satei.appraisal;
+		const numA = condition.selectedIndex;
+		const strA = condition.options[numA].value;
+                const others = $('input[name="others"]').val();
                    
 		const msgStart = `査定スタート`;
                 sendText(msgStart);
 		    
-                const msgForm = `【査定依頼フォーム】\n\n①ブランド名：${brand}\n②アイテム名：${item}\n③素材・カラー：${material}\n④サイズ：${size}\n⑤コンディション：${str}\n⑥付属品：${accessories}\n⑦刻印・シリアル(エルメス・シャネルなど)：${serial}`;
+                const msgForm = `【査定依頼フォーム】\n\n①ブランド名：${brand}\n②アイテム名：${item}\n③コンディション：${strC}\n④鑑定書/鑑別書：${strA}\n⑤その他情報：${others}`;
                 sendText(msgForm);
 		    
                 return false;
