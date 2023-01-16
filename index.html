@@ -14,11 +14,19 @@
         <div>
             <input class="form-control w-100 mt-1" name="brand" required>
         </div>
-        <p class="mt-3">② モデル・形式*</p>
+        <p class="mt-3">② アイテム名*</p>
         <div>
-            <input class="form-control w-100 mt-1" name="model" required>
+            <input class="form-control w-100 mt-1" name="item" required>
         </div>
-        <p class="mt-3">③ コンディション*</p>
+        <p class="mt-3">③ 素材・カラー</p>
+        <div>
+            <input class="form-control w-100 mt-1" name="material">
+        </div>
+        <p class="mt-3">④ サイズ*</p>
+        <div>
+            <input class="form-control w-100 mt-1" name="size" required>
+        </div>
+        <p class="mt-3">⑤ コンディション*</p>
         <div>
 	    <select class="form-control w-100 mt-1" name="condition" required>
 		<option value="" selected>選択してください</option>
@@ -29,35 +37,13 @@
 		<option value="使用感かなりあり">使用感かなりあり</option>
 	    </select>
         </div>
-	<p class="mt-3">④ 年式</p>
+        <p class="mt-3">⑥ 付属品</p>
         <div>
-            <input class="form-control w-100 mt-1" name="modelyear">
+            <input class="form-control w-100 mt-1" name="accessories">
         </div>
-	<p class="mt-3">⑤ シリアル</p>
+        <p class="mt-3">⑦ 刻印・シリアル(エルメス・シャネルなど)</p>
         <div>
             <input class="form-control w-100 mt-1" name="serial">
-        </div>
-        <p class="mt-3">⑥ ギャランティー/保証書</p>
-        <div>
-	    <select class="form-control w-100 mt-1" name="condition">
-		<option value="" selected>選択してください</option>
-		<option value="ギャランティーカードあり">ギャランティーカードあり</option>
-		<option value="保証書あり">保証書あり</option>
-		<option value="なし">なし</option>
-	    </select>
-        </div>
-        <p class="mt-3">⑦ 正規品/並行輸入品</p>
-        <div>
-	    <select class="form-control w-100 mt-1" name="genuine">
-		<option value="" selected>選択してください</option>
-		<option value="正規品">正規品</option>
-		<option value="並行輸入品">並行輸入品</option>
-		<option value="不明">不明</option>
-	    </select>
-        </div>
-	<p class="mt-3">⑧ その他情報</p>
-        <div>
-            <input type="text" class="form-control w-100 mt-1" name="others">
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="送信">
     </form>
@@ -70,7 +56,7 @@
     <script>
         
         $(document).ready(function () {
-            const liffId = "1657806132-BLWjrkpx";
+            const liffId = "1657806132-M7xpNe0G";
             initializeLiff(liffId);
         })
 
@@ -101,24 +87,19 @@
         $(function () {
             $('form').submit(function () {
                 const brand = $('input[name="brand"]').val();
-                const model = $('input[name="model"]').val();
+                const item = $('input[name="item"]').val();
+                const material  = $('input[name="material"]').val();
+                const size  = $('input[name="size"]').val();
                 const condition = document.satei.condition;
-		const numCondition = condition.selectedIndex;
-		const strCondition = condition.options[numC].value;
-		const modelyear = $('input[name="modelyear"]').val();
-		const serial = $('input[name="serial"]').val();
-                const guarantee = document.satei.guarantee;
-		const numGuarantee = condition.selectedIndex;
-		const strGuarantee = condition.options[numGuarantee].value;
-                const genuin = document.satei.genuin;
-		const numGenuin = condition.selectedIndex;
-		const strGenuin = condition.options[numGenuin].value;
-		const others = $('input[name="others"]').val();
+		const num = condition.selectedIndex;
+		const str = condition.options[num].value;
+                const accessories = $('input[name="accessories"]').val();
+                const serial = $('input[name="serial"]').val();
                    
 		const msgStart = `査定スタート`;
                 sendText(msgStart);
 		    
-                const msgForm = `【査定依頼フォーム】\n\n①ブランド名：${brand}\n②モデル名・型式：${model}\n③コンディション：${strCondition}\n④年式：${modelyear}\n⑤シリアル：${serial}\n⑥ギャランティー/保証書：${strGuarantee}\n⑦正規品/並行輸入品：${strGenuin}\n⑧その他情報：${others}`;
+                const msgForm = `【査定依頼フォーム】\n\n①ブランド名：${brand}\n②アイテム名：${item}\n③素材・カラー：${material}\n④サイズ：${size}\n⑤コンディション：${str}\n⑥付属品：${accessories}\n⑦刻印・シリアル(エルメス・シャネルなど)：${serial}`;
                 sendText(msgForm);
 		    
                 return false;
