@@ -92,12 +92,12 @@
 		const numA = condition.selectedIndex;
 		const strA = condition.options[numA].value;
                 const others = $('input[name="others"]').val();
-                   
-		const msgStart = `フォーム受付`;
-                sendText(msgStart);
 		    
                 const msgForm = `【ジュエリー査定依頼フォーム】\n\n①ブランド名：${brand}\n②アイテム名：${item}\n③コンディション：${strC}\n④鑑定書/鑑別書：${strA}\n⑤その他情報：${others}`;
                 sendText(msgForm);
+		    
+		const msgStart = `フォーム受付🌸`;
+                sendText(msgStart);
 		    
                 return false;
             });
